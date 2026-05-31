@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Night Picker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="app">
+
+    <header class="header">
+      <h1 class="logo">🎬 Movie Night</h1>
+      <p class="tagline">Your collaborative watchlist</p>
+    </header>
+
+    <section class="card" id="section-dom">
+      <div class="section-label">Part 1 · The DOM &amp; Events</div>
+
+      <h2>Say Hello to the DOM</h2>
+      <p class="hint">
+        The DOM (Document Object Model) is how JavaScript sees your HTML.
+        Every element is an object you can read and change.
+      </p>
+
+      <div class="demo-row">
+        <input
+          type="text"
+          id="name-input"
+          class="input"
+          placeholder="Enter your name..."
+          maxlength="30"
+        />
+        <span id="char-count" class="char-count">0 / 30</span>
+      </div>
+
+      <button id="greet-btn" class="btn btn-primary">Say Hello!</button>
+
+      <p id="greeting-output" class="output-text"></p>
+    </section>
+
+    <section class="card" id="section-data">
+      <div class="section-label">Part 2 · Arrays &amp; Objects</div>
+
+      <h2>Build the Watchlist</h2>
+      <p class="hint">
+        In JavaScript, objects are like lightweight structs. Arrays hold
+        collections. We'll store each movie as an object, and all movies
+        in an array.
+      </p>
+
+      <div class="demo-row">
+        <input
+          type="text"
+          id="movie-input"
+          class="input"
+          placeholder="Movie title..."
+          maxlength="60"
+        />
+        <button id="add-btn" class="btn btn-accent">+ Add</button>
+      </div>
+
+      <ul id="movie-list" class="movie-list">
+      </ul>
+
+      <p id="empty-state" class="empty-state">
+        No movies yet — add one above!
+      </p>
+    </section>
+
+    <section class="card" id="section-functions">
+      <div class="section-label">Part 3 · Functions &amp; Filter</div>
+
+      <h2>Filter &amp; Pick</h2>
+      <p class="hint">
+        Functions in JS can be passed around like values. Array.filter()
+        takes a function and returns a new array. We'll use this to show
+        only unwatched movies.
+      </p>
+
+      <div class="filter-row">
+        <button id="filter-all"      class="btn btn-filter active" data-filter="all">All</button>
+        <button id="filter-unwatched" class="btn btn-filter"       data-filter="unwatched">Unwatched</button>
+        <button id="filter-watched"  class="btn btn-filter"       data-filter="watched">Watched</button>
+      </div>
+
+      <div class="picker-box">
+        <button id="pick-btn" class="btn btn-pick">🎲 Pick a random movie</button>
+        <p id="pick-result" class="pick-result"></p>
+      </div>
+    </section>
+
+    <section class="card" id="section-async">
+      <div class="section-label">Part 4 · Async &amp; Fetch</div>
+
+      <h2>Search the Real World</h2>
+      <p class="hint">
+        fetch() lets you call APIs — services on the internet that return
+        data. It's asynchronous: your code doesn't freeze while waiting.
+        We'll use the Open Library API (no signup needed).
+      </p>
+
+      <div class="demo-row">
+        <input
+          type="text"
+          id="search-input"
+          class="input"
+          placeholder="Search for a book to add..."
+        />
+        <button id="search-btn" class="btn btn-primary">Search</button>
+      </div>
+
+      <div id="search-results" class="search-results"></div>
+    </section>
+
+  </div>
+
+  <script src="js/01-dom.js"></script>
+  <script src="js/02-data.js"></script>
+  <script src="js/03-functions.js"></script>
+  <script src="js/04-async.js"></script>
+
+</body>
+</html>
