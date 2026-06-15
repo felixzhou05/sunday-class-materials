@@ -81,3 +81,34 @@ movie.input.addEventListener("keydown", function(event){
         addMovie();
     }
 });
+
+movieList.addEventListener("click", function(event){
+    const target = event.target;
+
+    const deleteBtn = target.closest(".movie-delete");
+    const listItem  = event.target.closest(".movie-item");
+
+    if(deleteBtn) {
+        const id = Number(deleteBtn.dataset.id);
+        movies = movies.filter (function(movie){
+            return movie.id !== id;
+        });
+
+        renderMovies();
+        return;
+    }   
+
+    if(listItem) {
+        const id = Number(listItem.dataset.id);
+        const movie = movies.find(function(movie){
+            return movie.id === id;
+        });
+
+        if (movie) {
+            movie.watched = !movie.watched;
+            renderMovies();
+        }   
+    }
+});
+
+renderMovies();
