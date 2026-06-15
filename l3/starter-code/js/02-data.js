@@ -20,10 +20,12 @@ const movieList = undefined;
 const emptyState = undefined;
 
 function renderMovies(moviesToShow) {
+    //Base case - if moviesToShow is undefined, we want to show all movies
     if(moviesToShow === undefined) {
         moviesToShow = movies;
     }
 
+    // If there are no movies to show, we want to show the empty state and hide the movie list
     if(moviesToShow.length === 0) {
         emptyState.classList.remove("hidden");
         movieList.innerHTML = "";
@@ -32,11 +34,50 @@ function renderMovies(moviesToShow) {
         emptyState.classList.add("hidden");
     }
 
-    moviesToShow.map(function(movie){});
+    // .map - takes an array and transforms it into a new array by applying a function to each element of the original array
+    const htmlParts  = moviesToShow.map(function(movie){
+      const itemClass = movie.watched ? "movie-item watched" : "movie-item"
+      const checkMark = movie.watched ? "✓" : "";
+      return ` 
+        <li class="${itemClass}" data-id="${movie.id}">
+        <div class="movie-check">${checkMark}</div>
+        <span class="movie-title">${movie.title}</span>
+        <button class="movie-delete" data-id="${movie.id}" title="Remove">🗑️</button>
+        </li>
+        `;
+    });
+    
+    movieList.innerHTML = htmlParts.join("");
 }
 
-renderMovies([]);
-
+const titleSpans = movieList.querySelectorAll(".movie-title");
+titleSpans.forEach(function(span, index){
+    spawn.textContent = movies[index].title;
+});
+    
 function addMovie() {
+    const title = movieInput.value.trim();
 
+    if(title === "") return;
+
+    const newMovie = {
+        id: nextId,
+        title: title,
+        watched: false
+    };
+
+    movies.push(newMovie);
+    nextId++;
+
+    renderMovies();
+
+    movie.input.value = "";
+    movie.input.focus();
 }
+
+addBtn.addEventListener("click", addMovie);
+movie.input.addEventListener("keydown", function(event){
+    if(event.key === "Enter") {
+        addMovie();
+    }
+});
