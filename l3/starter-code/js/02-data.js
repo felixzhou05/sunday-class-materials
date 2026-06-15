@@ -14,10 +14,10 @@ let movies = [
 
 let nextId = 5;
 
-const movieInput = undefined;
-const addBtn = undefined;
-const movieList = undefined;
-const emptyState = undefined;
+const movieInput = document.getElementById("movie-input");
+const addBtn = document.getElementById("add-btn");
+const movieList = document.getElementById("movie-list");
+const emptyState = document.getElementById("empty-state");
 
 function renderMovies(moviesToShow) {
     //Base case - if moviesToShow is undefined, we want to show all movies
@@ -50,11 +50,6 @@ function renderMovies(moviesToShow) {
     movieList.innerHTML = htmlParts.join("");
 }
 
-const titleSpans = movieList.querySelectorAll(".movie-title");
-titleSpans.forEach(function(span, index){
-    spawn.textContent = movies[index].title;
-});
-    
 function addMovie() {
     const title = movieInput.value.trim();
 
@@ -71,12 +66,12 @@ function addMovie() {
 
     renderMovies();
 
-    movie.input.value = "";
-    movie.input.focus();
+    movieInput.value = "";
+    movieInput.focus();
 }
 
 addBtn.addEventListener("click", addMovie);
-movie.input.addEventListener("keydown", function(event){
+movieInput.addEventListener("keydown", function(event){
     if(event.key === "Enter") {
         addMovie();
     }
